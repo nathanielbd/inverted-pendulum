@@ -9,6 +9,8 @@ var Engine = Matter.Engine,
 	Events = Matter.Events,
 	Vector = Matter.Vector,
 	Body = Matter.Body,
+	MouseConstraint = Matter.MouseConstraint,
+	Mouse = Matter.Mouse,
 	Bodies = Matter.Bodies;
 
 // create engine, world, runner
@@ -55,7 +57,7 @@ World.add(world, [
 var previous_err = 0;
 var integral = 0;
 var setpoint = -Math.PI/2;
-const Kp = 1;
+const Kp = 2;
 const Ki = 0.02;
 const Kd = 20;
 
@@ -63,6 +65,12 @@ const Kd = 20;
 var time = 0;
 var dps = [];
 var chart = new CanvasJS.Chart("graph", {
+	axisX: {
+		title: "Time (ms)"
+	},
+	axisY: {
+		title: "Deviation from Vertical (rad)"
+	},
 	data: [{
 		type: "line",
 		dataPoints: dps
@@ -83,6 +91,17 @@ Events.on(engine, "afterUpdate", function(event) {
 	Body.setAngularVelocity(cart.bodies[2], output);
 	previous_err = err;
 });
+
+// it's more fun to manually create perturbations
+var mouse = Mouse.create(render.canvas),
+	mouseConstraint = MouseConstraint.create(engine, {
+		mouse: mouse,
+		constraint: {
+			stiffness: 0.001
+		}
+	});
+World.add(world, mouseConstraint);
+render.mouse = mouse;
 
 // run engine and renderer
 Engine.run(engine);
