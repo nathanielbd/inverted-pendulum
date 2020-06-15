@@ -3,4 +3,6 @@
 Simulation of an inverted pendulum on a cart stabilized with a PID controller. Input is the angle of the pendulum and output is the rotation of the wheels.
 
 ## Usage
-Open `index.html` in the browser. Try *gently* tugging on the pendulum's mass or the cart and watch the system stabilize itself.
+Try at [https://SASE-Labs-2021.github.io/inverted-pendulum](https://SASE-Labs-2021.github.io/inverted-pendulum). Otherwise, clone the repo and open `index.html` in the browser. 
+
+Try tuning the proportional, integral, and derivative terms of the controller using the sliders. Apply your changes by clicking the "Restart Engine" button. You can inform your tuning process my viewing the graph of the angle sensor output. Also see the example MicroPython and Arduino code.
