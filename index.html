@@ -18,9 +18,6 @@
 			<li class="nav-item">
 				<a class="nav-link" data-toggle="tab" href="#graph">Sensor</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" data-toggle="tab" href="#code">Code</a>
-			</li>
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="world">
@@ -41,38 +38,6 @@
 				</form>
 			</div>
 			<div class="tab-pane" id="graph" style="width: 800"></div>
-			<div class="tab-pane" id="code">
-				<h2>Python (MicroPython)</h2>
-				<pre>
-					previous_error = 0
-					integral = 0
-					while True:
-						error = 90 - sensor.value()
-						integral = integral + error*dt
-						derivative = (error - previous_error)/dt
-						output = Kp*error + Ki*integral + Kd*derivative
-						servo.speed(output)
-						previous_error = error
-						time.sleep(dt)
-				</pre>
-				<h2>C++ (Arduino)</h2>
-				<pre>
-					double previousError = 0;
-					double integral = 0;
-					double error;
-					double integral;
-					double derivative;
-					double output;
-					while (true) {
-						error = 90 - analogRead(sensor);
-						integral = integral + error*dt;
-						derivative = (error - previousError)/dt;
-						output = Kp*error + Ki*integral + Kd*derivative;
-						servo.write(output);
-						usleep(dt);
-					}
-				</pre>
-			</div>
 		</div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.js"></script>
 		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
