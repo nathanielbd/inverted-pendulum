@@ -78,7 +78,7 @@ var chart = new CanvasJS.Chart("graph", {
 		title: "Time (ms)"
 	},
 	axisY: {
-		title: "Deviation from Vertical (rad)"
+		title: "error (rad)"
 	},
 	data: [{
 		type: "line",
